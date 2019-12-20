@@ -402,6 +402,7 @@ class rcube_plugin_api
         $args += array('abort' => false);
         $this->active_hook = $hook;
 
+    if (!empty($this->handlers[$hook])) {
         foreach ((array)$this->handlers[$hook] as $callback) {
             $ret = call_user_func($callback, $args);
             if ($ret && is_array($ret)) {
@@ -412,6 +413,7 @@ class rcube_plugin_api
                 break;
             }
         }
+    }
 
         $this->active_hook = false;
         return $args;

@@ -1107,7 +1107,7 @@ class rcube_imap_generic
         }
 
         list($code, $response) = $this->execute('STATUS', array($this->escape($mailbox),
-            '(' . implode(' ', (array) $items) . ')'));
+            '(' . implode(' ', $items) . ')'));
 
         if ($code == self::ERROR_OK && preg_match('/\* STATUS /i', $response)) {
             $result   = array();
@@ -1120,9 +1120,9 @@ class rcube_imap_generic
             if (!is_array($items) && ($pos = strpos($response, '(')) !== false) {
                 $response = substr($response, $pos);
                 $items = $this->tokenizeResponse($response, 1);
-                if (!is_array($items)) {
+            }
+            if (!is_array($items)) {
                     return $result;
-                }
             }
 
             for ($i=0, $len=count($items); $i<$len; $i += 2) {
