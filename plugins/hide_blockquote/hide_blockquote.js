@@ -9,7 +9,9 @@ function hide_blockquote()
     return;
 
   $('pre > blockquote', $('#messagebody')).each(function() {
-    var div, link, q = $(this),
+    var res, text, div, link, q = $(this),
+      // Add new-line character before each blockquote
+      $('blockquote').before(document.createTextNode("\n"));
       text = $.trim(q.text()),
       res = text.split(/\n/);
 
