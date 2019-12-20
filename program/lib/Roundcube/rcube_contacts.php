@@ -404,7 +404,7 @@ class rcube_contacts extends rcube_addressbook
             // count result pages
             $cnt   = $this->count();
             $pages = ceil($cnt / $this->page_size);
-            $scnt  = count($post_search);
+            $scnt  = !empty($post_search) ? count($post_search) : 0;
 
             // get (paged) result
             for ($i=0; $i<$pages; $i++) {
